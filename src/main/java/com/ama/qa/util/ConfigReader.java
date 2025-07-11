@@ -4,17 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Class reads base settings from the config.properties file
- */
+
 public class ConfigReader {
 	private String username = "";
 	private String password = "";
 	private String browser ="";
 
-	/**
-	 * Class constructor loads settings from the file and saves to fields
-	 */
 	public ConfigReader() {
 		FileInputStream fis;
 		try {
@@ -38,20 +33,12 @@ public class ConfigReader {
 		
 	}
 
-	/**
-	 * Method to get the user name
-	 *
-	 * @return login
-	 */
+
 	public String getUsername() {
 		return username;
 	}
 
-	/**
-	 * Method to get the password
-	 *
-	 * @return password
-	 */
+
 	public String getPassword() {
 		return password;
 	}

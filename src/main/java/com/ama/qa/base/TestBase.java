@@ -15,15 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/* 
-* Author Information:
-* Author: Sonal Garg 
-* LinkedIn: https://www.linkedin.com/in/sonalgarg32/
-* 
-* @version 1.0
-* @since 2024-09-22
-*/
-public class TestBase {
+ class TestBase {
 
 	public static WebDriver driver = null;
 	public static Properties prop;
@@ -47,16 +39,31 @@ public class TestBase {
 	}
 
 	public static void initialization() {
-		String browsername = prop.getProperty("browser");
+	    String browsername = prop.getProperty("BROWSER").toLowerCase(); // get from config
+	    String url = prop.getProperty("URL"); // get URL from config
 
-		if (browsername.equals("chrome")) {
-			System.setProperty("webdriver.edge.driver", "C:\\\\WebDrivers\\\\msedgedriver.exe");
-			driver = getdriver();
+	    if (browsername.equals("chrome")) {
+	        System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");
+	        driver = new ChromeDriver();
 
-		}
-	
-		driver.get("https://www.facebook.com/");
+	    } else if (browsername.equals("edge")) {
+	        System.setProperty("webdriver.edge.driver", "C:\\WebDrivers\\msedgedriver.exe");
+	        driver = new EdgeDriver();
+
+	    } else if (browsername.equals("firefox")) {
+	        System.setProperty("webdriver.gecko.driver", "C:\\WebDrivers\\geckodriver.exe");
+	        driver = new FirefoxDriver();
+
+	    } else {
+	        throw new RuntimeException("Browser not supported: " + browsername);
+	    }
+
+	    driver.manage().window().maximize();
+	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	    driver.get(url);
 	}
+
+
 
 	/*public static void myWait()
 	{

@@ -12,14 +12,7 @@ import com.ama.qa.pages.AmazonProductDetailsPage;
 import com.ama.qa.pages.ShoppingCartPage;
 import com.ama.qa.util.ConfigReader;
 
-/* 
-* Author Information:
-* Author: Sonal Garg 
-* LinkedIn: https://www.linkedin.com/in/sonalgarg32/
-* 
-* @version 1.0
-* @since 2024-09-22
-*/
+
 public class AmazonLoginTest extends TestBase {
 	
 	ConfigReader configReader=new ConfigReader();	

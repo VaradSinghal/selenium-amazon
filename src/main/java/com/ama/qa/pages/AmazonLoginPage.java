@@ -7,14 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.ama.qa.base.TestBase;
 
-/* 
-* Author Information:
-* Author: Sonal Garg 
-* LinkedIn: https://www.linkedin.com/in/sonalgarg32/
-* 
-* @version 1.0
-* @since 2024-09-22
-*/
+
 public class AmazonLoginPage extends TestBase{
 	@FindBy(xpath = "//span[text()='Log In']")WebElement logInButton;
 	@FindBy(name = "email")WebElement email;

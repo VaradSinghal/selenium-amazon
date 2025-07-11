@@ -11,26 +11,17 @@ import org.testng.annotations.Test;
 import com.ama.qa.base.TestBase;
 import com.ama.qa.pages.AmazonHomePage;
 import com.ama.qa.pages.AmazonSearchProductsPage;
+import com.ama.qa.pages.AmazonProductDetailsPage;
 
 
-/* 
-* Author Information:
-* Author: Sonal Garg 
-* LinkedIn: https://www.linkedin.com/in/sonalgarg32/
-* 
-* @version 1.0
-* @since 2024-09-22
-*/
+
+
 public class AmazonSearchProductsTest extends TestBase{
 
 	AmazonSearchProductsPage amazonSearchProductsPage;
 	AmazonHomePage amazonHomePage;
-	/*
-	 * public AmazonSearchProductsTest() { super();
-	 * 
-	 * 
-	 * }
-	 */
+	AmazonProductDetailsPage amazonProductDetailsPage;
+
 
 	@BeforeTest
 	public void setup() throws InterruptedException {
@@ -40,24 +31,32 @@ public class AmazonSearchProductsTest extends TestBase{
 	}
 
 
+
+
 	@Test(priority=0)
-	public void serachedProductPageOpened() throws InterruptedException
-	{
-		amazonHomePage.selectCategory("Electronics");
-		Assert.assertEquals(amazonHomePage.getSelectedCategory(), "Electronics");
-		amazonHomePage.searchForProduct("female smartwatch");
-		amazonHomePage.clickOnSearchButton(); 
-		Thread.sleep(5000);
-		Assert.assertEquals(amazonSearchProductsPage.getPageLabelForSearchedProduct().contains("watch"),true);
-		Assert.assertEquals(amazonSearchProductsPage.getPageLabelForSearchedProduct().contains("female"),true);
-	
+	public void searchedProductPageOpened() throws InterruptedException {
+	    amazonHomePage.selectCategory("Electronics");
+	    Assert.assertEquals(amazonHomePage.getSelectedCategory(), "Electronics");
+
+	    amazonHomePage.searchForProduct("female smartwatch");
+	    amazonHomePage.clickOnSearchButton();
+
+	    amazonSearchProductsPage.clickOnProduct("Noise Twist Go Round");
+
+
+	    amazonProductDetailsPage = new AmazonProductDetailsPage();
+
+	    Assert.assertTrue(amazonProductDetailsPage.getSearchedProductTitle().contains("Noise Twist"),
+	            "Product title mismatch");
 	}
+
+
 	
 	@Test(priority=1)
 	public void clickOnRequiredProduct() throws InterruptedException
 	{
        
-		amazonSearchProductsPage.clickOnProduct("Noise Twist Go Bluetooth Calling Smart Watch for Women with Sleek Metal Dial, Glossy Finish, 1.39\" Display, 100+ Watch Faces, IP68, Sleep Tracking, Voice Assistance, Upto 7 Days Battery (Gold Link)");
+		amazonSearchProductsPage.clickOnProduct("Noise Twist Go Round dial Smartwatch with BT Calling, 1.39\" Display, Metal Build, 100+ Watch Faces, IP68, Sleep Tracking, 100+ Sports Modes, 24/7 Heart Rate Monitoring (Rose Pink)");
 	
 		
 	}
